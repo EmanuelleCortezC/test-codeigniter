@@ -29,7 +29,7 @@ class ProductsController extends ResourceController
             return $this->respond($data);
         }
         
-        return $this->failNotFound('Nenhum dado encontrado com id '.$id);        
+        return $this->failNotFound('Nenhum dado encontrado com este id '.$id);        
     }
 
     public function create()
@@ -39,10 +39,8 @@ class ProductsController extends ResourceController
         if($this->productsModel->insert($data)){
             $response = [
                 'status'   => 201,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Cliente salvo com sucesso'
-                ]
+                'mensagem' => 'Produto salvo com sucesso',
+                'retorno' => $data
             ];
             return $this->respondCreated($response);
         }
@@ -58,11 +56,9 @@ class ProductsController extends ResourceController
         if($this->productsModel->update($id, $data)){
             $response = [
                 'status'   => 200,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Cliente atualizado com sucesso'
-                    ]
-                ];
+                'mensagem' => 'Produto atualizado com sucesso',
+                'retorno' => $data
+            ];
                 return $this->respond($response);
             };
 
@@ -77,14 +73,12 @@ class ProductsController extends ResourceController
             $this->productsModel->delete($id);
             $response = [
                 'status'   => 200,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Cliente removido com sucesso'
-                ]
+                'mensagem' => 'Produto removido com sucesso',
+                'retorno' => $data
             ];
             return $this->respondDeleted($response);
         }
         
-        return $this->failNotFound('Nenhum dado encontrado com id '.$id);        
+        return $this->failNotFound('Nenhum dado encontrado com este id '.$id);        
     }
 }

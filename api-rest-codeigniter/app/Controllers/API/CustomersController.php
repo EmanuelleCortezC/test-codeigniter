@@ -44,10 +44,8 @@ class CustomersController extends ResourceController
         if($this->customersModel->insert($data)){
             $response = [
                 'status'   => 201,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Cliente salvo com sucesso'
-                ]
+                'mensagem' => 'Cliente salvo com sucesso',
+                'retorno' => $data
             ];
             return $this->respondCreated($response);
         }
@@ -63,11 +61,9 @@ class CustomersController extends ResourceController
         if($this->customersModel->update($id, $data)){
             $response = [
                 'status'   => 200,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Cliente atualizado com sucesso'
-                    ]
-                ];
+                'mensagem' => 'Cliente atualizado com sucesso',
+                'retorno' => $data
+            ];
                 return $this->respond($response);
             };
 
@@ -82,10 +78,8 @@ class CustomersController extends ResourceController
             $this->customersModel->delete($id);
             $response = [
                 'status'   => 200,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Cliente removido com sucesso'
-                ]
+                'mensagem' => 'Cliente removido com sucesso',
+                'retorno' => $data
             ];
             return $this->respondDeleted($response);
         }
